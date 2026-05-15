@@ -7,25 +7,65 @@ import Grafica from "./Grafica";
 function ResultadoCard({ resultado }) {
 
   return (
-    <div className="mt-10 grid xl:grid-cols-2 gap-8">
-      <div className="space-y-8">
-        <div className="bg-slate-950/70 border border-slate-800 rounded-[28px] p-8">
-          <h2 className="text-3xl font-semibold mb-6 text-white">
-            Polinomio Resultante
-          </h2>
-          <div className="bg-[#0e1320] rounded-3xl p-8 overflow-auto border border-slate-800">
 
-            <BlockMath math={resultado.latex} />
+    <div className="mt-10 grid gap-8 xl:grid-cols-2">
+
+      {/* LEFT */}
+      <div className="space-y-8">
+
+        {/* Polinomio */}
+        <div className="rounded-[32px] border border-slate-200 bg-white p-8 shadow-sm">
+
+          <div className="mb-8">
+
+            <span className="text-sm font-medium text-blue-600">
+              Resultado
+            </span>
+
+            <h2 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900">
+              Polinomio Interpolante
+            </h2>
+
+            <p className="mt-3 text-sm leading-7 text-slate-500">
+              Expresión matemática final obtenida mediante el método seleccionado.
+            </p>
+
+          </div>
+
+          <div className="rounded-3xl border border-slate-200 bg-slate-50 p-8 overflow-auto">
+
+            <div className="text-slate-800">
+              <BlockMath math={resultado.latex} />
+            </div>
 
           </div>
 
         </div>
 
-        <div className="bg-slate-950/70 border border-slate-800 rounded-[28px] p-8">
-          <h2 className="text-3xl font-semibold mb-8 text-white">
-            Explicación Paso a Paso
-          </h2>
-          <StepsTimeline metodo={resultado.metodo} pasos={resultado.pasos} />
+        {/* Pasos */}
+        <div className="rounded-[32px] border border-slate-200 bg-white p-8 shadow-sm">
+
+          <div className="mb-8">
+
+            <span className="text-sm font-medium text-violet-600">
+              Desarrollo Matemático
+            </span>
+
+            <h2 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900">
+              Explicación Paso a Paso
+            </h2>
+
+            <p className="mt-3 text-sm leading-7 text-slate-500">
+              Desarrollo completo del procedimiento matemático.
+            </p>
+
+          </div>
+
+          <StepsTimeline
+            metodo={resultado.metodo}
+            pasos={resultado.pasos}
+          />
+
         </div>
 
       </div>
@@ -34,6 +74,7 @@ function ResultadoCard({ resultado }) {
       <Grafica resultado={resultado} />
 
     </div>
+
   );
 }
 

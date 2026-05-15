@@ -6,53 +6,111 @@ import {
   Tooltip,
   XAxis,
   YAxis,
-  Scatter
+  Scatter,
 } from "recharts";
 
 function Grafica({ resultado }) {
 
   return (
-    <div className="bg-slate-950/70 border border-slate-800 rounded-[28px] p-8 h-[700px]">
 
-      <h2 className="text-3xl font-semibold mb-8 text-white">
-        Visualización Gráfica
-      </h2>
+    <div className="rounded-[32px] border border-slate-200 bg-white p-8 shadow-sm">
 
-      <ResponsiveContainer width="100%" height="90%">
+      {/* Header */}
+      <div className="mb-8 flex items-start justify-between">
 
-        <LineChart data={resultado.grafica}>
+        <div>
 
-          <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
+          <span className="text-sm font-medium text-blue-600">
+            Análisis Visual
+          </span>
 
-          <XAxis dataKey="x" stroke="#94A3B8" />
+          <h2 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900">
+            Gráfica de Interpolación
+          </h2>
 
-          <YAxis stroke="#94A3B8" />
+          <p className="mt-3 max-w-xl text-sm leading-7 text-slate-500">
+            Visualización del polinomio generado a partir de los puntos
+            ingresados y su comportamiento en el intervalo calculado.
+          </p>
 
-          <Tooltip
-            contentStyle={{
-              background: "#111827",
-              border: "1px solid rgba(148,163,184,0.18)",
-              borderRadius: "16px",
-              color: "#e2e8f0"
+        </div>
+
+      </div>
+
+      {/* Chart */}
+      <div className="h-[560px] rounded-3xl bg-slate-50 p-6 border border-slate-100">
+
+        <ResponsiveContainer width="100%" height="100%">
+
+          <LineChart
+            data={resultado.grafica}
+            margin={{
+              top: 20,
+              right: 20,
+              left: 0,
+              bottom: 10,
             }}
-          />
+          >
 
-          <Line
-            type="monotone"
-            dataKey="y"
-            stroke="#cbd5e1"
-            strokeWidth={3}
-            dot={false}
-          />
+            {/* Grid */}
+            <CartesianGrid
+              strokeDasharray="4 4"
+              stroke="#E2E8F0"
+            />
 
-          <Scatter
-            data={resultado.puntos_originales}
-            fill="#64748b"
-          />
+            {/* Axis */}
+            <XAxis
+              dataKey="x"
+              stroke="#94A3B8"
+              tick={{ fill: "#64748B", fontSize: 12 }}
+              axisLine={false}
+              tickLine={false}
+            />
 
-        </LineChart>
+            <YAxis
+              stroke="#94A3B8"
+              tick={{ fill: "#64748B", fontSize: 12 }}
+              axisLine={false}
+              tickLine={false}
+            />
 
-      </ResponsiveContainer>
+            {/* Tooltip */}
+            <Tooltip
+              cursor={{
+                stroke: "#CBD5E1",
+                strokeWidth: 1,
+              }}
+              contentStyle={{
+                borderRadius: "18px",
+                border: "1px solid #E2E8F0",
+                background: "rgba(255,255,255,0.96)",
+                backdropFilter: "blur(12px)",
+                boxShadow: "0 10px 30px rgba(15,23,42,0.08)",
+                color: "#0F172A",
+                padding: "12px",
+              }}
+            />
+
+            {/* Polynomial line */}
+            <Line
+              type="monotone"
+              dataKey="y"
+              stroke="#2563EB"
+              strokeWidth={3.5}
+              dot={false}
+            />
+
+            {/* Original points */}
+            <Scatter
+              data={resultado.puntos_originales}
+              fill="#7C3AED"
+            />
+
+          </LineChart>
+
+        </ResponsiveContainer>
+
+      </div>
 
     </div>
   );
