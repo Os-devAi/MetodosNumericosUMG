@@ -44,29 +44,16 @@ function App() {
         </nav>
 
         {/* Hero */}
-        <section className="container mx-auto px-6 pt-16 pb-10">
+        <section className="container mx-auto px-6 pb-10">
 
-          <div className="max-w-3xl">
-
-            <span className="inline-flex items-center rounded-full border border-slate-300 bg-white px-4 py-2 text-xs font-medium tracking-wide text-slate-500 shadow-sm">
-              Interpolación Numérica
-            </span>
-
+          <div className="max-w-3xl">      
             <h1 className="mt-6 text-5xl font-bold tracking-tight leading-tight text-slate-900">
-
-              Métodos Numéricos
-              <span className="block text-blue-600">
-                visuales y prácticos
-              </span>
-
+              Métodos Numéricos              
             </h1>
 
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
-
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600 pt-2">
               Calcula polinomios de interpolación utilizando los métodos de
-              Lagrange, Newton y Neville con visualización gráfica
-              y explicación paso a paso.
-
+              Lagrange, Newton y Neville.
             </p>
 
           </div>

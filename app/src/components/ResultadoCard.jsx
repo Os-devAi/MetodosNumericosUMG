@@ -69,7 +69,7 @@ function ResultadoCard({ resultado }) {
 
       </div>
 
-      <Grafica resultado={resultado} />
+      {/* <Grafica resultado={resultado} /> */}
 
     </div>
 
