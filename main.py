@@ -173,7 +173,16 @@ async def resolver(metodo: str, data: PuntosInput):
                     sp.latex(termino),
 
                 "valor_y":
-                    py[i]
+                    py[i],
+
+                "operaciones": [
+                    f"Construir L_{i}(x) usando los factores:",
+                    *[
+                        f"Multiplicar (x - {px[j]}) / ({px[i]} - {px[j]})"
+                        for j in range(n) if i != j
+                    ],
+                    f"Multiplicar el polinomio base por y_{i} = {py[i]}"
+                ]
             })
 
         resultado_sym = sp.expand(polinomio_final)
@@ -232,7 +241,13 @@ async def resolver(metodo: str, data: PuntosInput):
                         str(den),
 
                     "resultado":
-                        sp.latex(resultado)
+                        sp.latex(resultado),
+
+                    "operaciones": [
+                        f"Numerador = {sp.latex(num)}",
+                        f"Denominador = {den}",
+                        f"Dividir numerador entre denominador para obtener el resultado"
+                    ]
                 })
 
                 contador += 1
@@ -332,7 +347,15 @@ async def resolver(metodo: str, data: PuntosInput):
                     "al polinomio interpolante.",
 
                 "formula":
-                    sp.latex(sp.expand(termino))
+                    sp.latex(sp.expand(termino)),
+
+                "acumulado":
+                    sp.latex(sp.expand(acumulado)),
+
+                "operaciones": [
+                    f"Construir acumulado = {sp.latex(sp.expand(acumulado))}",
+                    f"Multiplicar coeficiente de diferencia dividida por el acumulado para formar el término"
+                ]
             })
 
             pol_newton += termino

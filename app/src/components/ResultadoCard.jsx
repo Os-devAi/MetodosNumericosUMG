@@ -8,9 +8,8 @@ function ResultadoCard({ resultado }) {
 
   return (
 
-    <div className="mt-10 grid gap-8 xl:grid-cols-2">
+    <div className="mt-10 space-y-8">
 
-      {/* LEFT */}
       <div className="space-y-8">
 
         {/* Polinomio */}
@@ -70,7 +69,6 @@ function ResultadoCard({ resultado }) {
 
       </div>
 
-      {/* RIGHT */}
       <Grafica resultado={resultado} />
 
     </div>
