@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import MetodoForm from "./components/MetodoForm";
 import ResultadoCard from "./components/ResultadoCard";
+import Grafica from "./components/Grafica";
 
 function App() {
 
@@ -30,11 +31,11 @@ function App() {
             <div>
 
               <h1 className="text-2xl font-bold tracking-tight text-slate-900">
-                NumériX
+                Métodos Numéricos • UMG 2026
               </h1>
 
               <p className="text-sm text-slate-500 mt-1">
-                Métodos Numéricos • UMG 2026
+                Universidad Mariano Gálvez
               </p>
 
             </div>
@@ -46,11 +47,7 @@ function App() {
         {/* Hero */}
         <section className="container mx-auto px-6 pb-10">
 
-          <div className="max-w-3xl">      
-            <h1 className="mt-6 text-5xl font-bold tracking-tight leading-tight text-slate-900">
-              Métodos Numéricos              
-            </h1>
-
+          <div className="max-w-3xl">          
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600 pt-2">
               Calcula polinomios de interpolación utilizando los métodos de
               Lagrange, Newton y Neville.
@@ -71,7 +68,12 @@ function App() {
               <ResultadoCard resultado={resultado} />
             )}
 
+            {resultado && (
+              <Grafica resultado={resultado} />
+            )}
           </div>
+
+
 
         </main>
 
