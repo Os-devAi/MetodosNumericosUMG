@@ -7,6 +7,12 @@ import Grafica from "./components/Grafica";
 function App() {
 
   const [resultado, setResultado] = useState(null);
+  const [evalPoint, setEvalPoint] = useState(null);
+
+  const actualizarResultado = (nuevoResultado) => {
+    setResultado(nuevoResultado);
+    setEvalPoint(null);
+  };
 
   return (
 
@@ -62,14 +68,14 @@ function App() {
 
           <div className="space-y-10">
 
-            <MetodoForm setResultado={setResultado} />
+            <MetodoForm setResultado={actualizarResultado} />
 
             {resultado && (
-              <ResultadoCard resultado={resultado} />
+              <ResultadoCard resultado={resultado} setEvalPoint={setEvalPoint} />
             )}
 
             {resultado && (
-              <Grafica resultado={resultado} />
+              <Grafica resultado={resultado} evalPoint={evalPoint} />
             )}
           </div>
 

@@ -9,7 +9,7 @@ import {
   Scatter,
 } from "recharts";
 
-function Grafica({ resultado }) {
+function Grafica({ resultado, evalPoint }) {
 
   return (
 
@@ -105,6 +105,16 @@ function Grafica({ resultado }) {
               data={resultado.puntos_originales}
               fill="#7C3AED"
             />
+
+            {/* Evaluated point */}
+            {evalPoint && evalPoint.y !== null && !isNaN(evalPoint.y) && (
+              <Scatter
+                name="Punto Evaluado"
+                data={[evalPoint]}
+                fill="#EF4444"
+                shape="circle"
+              />
+            )}
 
           </LineChart>
 
