@@ -55,7 +55,7 @@ function ResultadoCard({ resultado, setEvalPoint }) {
 
           <div className="mb-8">
 
-            <span className="text-sm font-medium text-blue-600">
+            <span className="text-sm font-medium text-[#050919]">
               Resultado
             </span>
 
@@ -138,7 +138,7 @@ function ResultadoCard({ resultado, setEvalPoint }) {
 
               {/* Resultado de la evaluación */}
               <div className="flex-1 rounded-2xl bg-blue-50/50 border border-blue-100 p-5 flex flex-col justify-center min-h-[88px]">
-                <span className="text-xs font-medium text-blue-600 uppercase tracking-wider mb-1">
+                <span className="text-xs font-medium text-[#050919] uppercase tracking-wider mb-1">
                   Resultado P(X)
                 </span>
                 <div className="overflow-auto py-1">
@@ -165,7 +165,7 @@ function ResultadoCard({ resultado, setEvalPoint }) {
 
           <div className="mb-8">
 
-            <span className="text-sm font-medium text-violet-600">
+            <span className="text-sm font-medium text-[#050919]">
               Desarrollo Matemático
             </span>
 

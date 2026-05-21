@@ -93,7 +93,7 @@ function StepsTimeline({ metodo, pasos }) {
         <div className="absolute left-[11px] top-8 h-full w-[2px] bg-slate-200"></div>
       )}
 
-      <div className="absolute left-0 top-1 flex h-6 w-6 items-center justify-center rounded-full bg-blue-600 text-xs font-semibold text-white shadow-sm">
+      <div className="absolute left-0 top-1 flex h-6 w-6 items-center justify-center rounded-full bg-[#050919] text-xs font-semibold text-white shadow-sm">
         {index + 1}
       </div>
 
@@ -139,7 +139,7 @@ function StepsTimeline({ metodo, pasos }) {
   const renderNewtonNevilleStep = (paso, index) => (
     <div key={index} className="rounded-3xl border border-slate-200 bg-slate-50 p-6">
       <div className="mb-5">
-        <span className="text-sm font-medium text-violet-600">Paso {index + 1}</span>
+        <span className="text-sm font-medium text-[#050919]">Paso {index + 1}</span>
         <h3 className="mt-2 text-xl font-semibold tracking-tight text-slate-900">
           {paso.titulo || "Desarrollo del cálculo"}
         </h3>

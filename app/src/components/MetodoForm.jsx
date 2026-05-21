@@ -11,6 +11,15 @@ function MetodoForm({ setResultado }) {
 
   const [loading, setLoading] = useState(false);
 
+  const resetear = () => {
+
+    setMetodo("lagrange");
+    setX("1,2,3");
+    setY("2,4,8");
+    setResultado(null);
+
+  };
+
   const enviar = async () => {
 
     try {
@@ -47,7 +56,7 @@ function MetodoForm({ setResultado }) {
       {/* Header */}
       <div className="mb-8">
 
-        <span className="text-sm font-medium text-blue-600">
+        <span className="text-sm font-medium text-[#050919]">
           Configuración
         </span>
 
@@ -173,7 +182,7 @@ function MetodoForm({ setResultado }) {
 
       </div>
 
-      {/* Footer */}
+      {/* Example*/}
       <div className="mt-8 flex items-center justify-between">
 
         <div className="text-sm text-slate-400">
@@ -183,12 +192,41 @@ function MetodoForm({ setResultado }) {
           </span>
         </div>
 
-        <button
-          onClick={enviar}
-          disabled={loading}
-          className="
+        <div className="mt-8 flex items-center justify-between">
+          <button
+            onClick={resetear}
+            className="
             rounded-2xl
-            bg-blue-600
+            bg-[#050919]
+            px-8
+            py-4
+            mr-4
+            text-sm
+            font-semibold
+            text-white
+            transition-all
+            duration-200
+            hover:bg-red-700
+            hover:shadow-lg
+            hover:shadow-blue-100
+            hover:scale-[1.02]
+            hover:translate-y-[-2px]
+            hover:cursor-pointer
+            disabled:cursor-not-allowed
+            disabled:opacity-60
+          "
+          >
+
+            Reiniciar
+
+          </button>
+
+          <button
+            onClick={enviar}
+            disabled={loading}
+            className="
+            rounded-2xl
+            bg-[#050919]
             px-8
             py-4
             text-sm
@@ -196,17 +234,21 @@ function MetodoForm({ setResultado }) {
             text-white
             transition-all
             duration-200
-            hover:bg-blue-700
+            hover:bg-red-700
             hover:shadow-lg
             hover:shadow-blue-100
+            hover:scale-[1.02]
+            hover:translate-y-[-2px]
+            hover:cursor-pointer
             disabled:cursor-not-allowed
             disabled:opacity-60
           "
-        >
+          >
 
-          {loading ? "Resolviendo..." : "Resolver Método"}
+            {loading ? "Resolviendo..." : "Resolver Método"}
 
-        </button>
+          </button>
+        </div>
 
       </div>
 

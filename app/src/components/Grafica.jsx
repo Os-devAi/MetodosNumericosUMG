@@ -17,10 +17,8 @@ function Grafica({ resultado, evalPoint }) {
 
       {/* Header */}
       <div className="mb-8 flex items-start justify-between">
-
         <div>
-
-          <span className="text-sm font-medium text-blue-600">
+          <span className="text-sm font-medium text-[#050919]">
             Análisis Visual
           </span>
 
@@ -28,13 +26,7 @@ function Grafica({ resultado, evalPoint }) {
             Gráfica de Interpolación
           </h2>
 
-          <p className="mt-3 max-w-xl text-sm leading-7 text-slate-500">
-            Visualización del polinomio generado a partir de los puntos
-            ingresados y su comportamiento en el intervalo calculado.
-          </p>
-
         </div>
-
       </div>
 
       {/* Chart */}
@@ -95,7 +87,7 @@ function Grafica({ resultado, evalPoint }) {
             <Line
               type="monotone"
               dataKey="y"
-              stroke="#2563EB"
+              stroke="#0F172A"
               strokeWidth={3.5}
               dot={false}
             />
