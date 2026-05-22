@@ -47,7 +47,12 @@ function StepsTimeline({ metodo, pasos }) {
         {isLatex ? (
           <div className="overflow-auto rounded-2xl border border-slate-200 bg-white p-4">
             <div className="text-slate-800">
-              <BlockMath math={value} />
+              <BlockMath
+                math={String(value)
+                  .replace(/−/g, "-")
+                  .replace(/\r/g, "")
+                }
+              />
             </div>
           </div>
         ) : typeof value === "string" || typeof value === "number" ? (

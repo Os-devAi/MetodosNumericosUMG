@@ -10,9 +10,7 @@ import {
 } from "recharts";
 
 function Grafica({ resultado, evalPoint }) {
-
   return (
-
     <div className="rounded-[32px] border border-slate-200 bg-white p-8 shadow-sm">
 
       {/* Header */}
@@ -26,6 +24,9 @@ function Grafica({ resultado, evalPoint }) {
             Gráfica de Interpolación
           </h2>
 
+          <p className="mt-3 text-sm leading-7 text-slate-500">
+            Representación visual del polinomio interpolante y los puntos originales.
+          </p>
         </div>
       </div>
 
@@ -37,10 +38,10 @@ function Grafica({ resultado, evalPoint }) {
           <LineChart
             data={resultado.grafica}
             margin={{
-              top: 20,
-              right: 20,
-              left: 0,
-              bottom: 10,
+              top: 30,
+              right: 40,
+              left: 20,
+              bottom: 20,
             }}
           >
 
@@ -50,20 +51,37 @@ function Grafica({ resultado, evalPoint }) {
               stroke="#E2E8F0"
             />
 
-            {/* Axis */}
+            {/* X Axis */}
             <XAxis
               dataKey="x"
+              type="number"
               stroke="#94A3B8"
               tick={{ fill: "#64748B", fontSize: 12 }}
               axisLine={false}
               tickLine={false}
+              domain={[
+                (dataMin) =>
+                  dataMin - Math.abs(dataMin * 0.2 || 1),
+
+                (dataMax) =>
+                  dataMax + Math.abs(dataMax * 0.2 || 1),
+              ]}
             />
 
+            {/* Y Axis */}
             <YAxis
+              type="number"
               stroke="#94A3B8"
               tick={{ fill: "#64748B", fontSize: 12 }}
               axisLine={false}
               tickLine={false}
+              domain={[
+                (dataMin) =>
+                  dataMin - Math.abs(dataMin * 0.2 || 1),
+
+                (dataMax) =>
+                  dataMax + Math.abs(dataMax * 0.2 || 1),
+              ]}
             />
 
             {/* Tooltip */}
@@ -81,32 +99,41 @@ function Grafica({ resultado, evalPoint }) {
                 color: "#0F172A",
                 padding: "12px",
               }}
+              formatter={(value) => [
+                Number(value).toFixed(6),
+              ]}
             />
 
             {/* Polynomial line */}
             <Line
-              type="monotone"
+              type="natural"
               dataKey="y"
               stroke="#0F172A"
               strokeWidth={3.5}
               dot={false}
+              activeDot={{
+                r: 6,
+              }}
             />
 
             {/* Original points */}
             <Scatter
+              name="Puntos Originales"
               data={resultado.puntos_originales}
               fill="#7C3AED"
             />
 
             {/* Evaluated point */}
-            {evalPoint && evalPoint.y !== null && !isNaN(evalPoint.y) && (
-              <Scatter
-                name="Punto Evaluado"
-                data={[evalPoint]}
-                fill="#EF4444"
-                shape="circle"
-              />
-            )}
+            {evalPoint &&
+              evalPoint.y !== null &&
+              !isNaN(evalPoint.y) && (
+                <Scatter
+                  name="Punto Evaluado"
+                  data={[evalPoint]}
+                  fill="#EF4444"
+                  shape="circle"
+                />
+              )}
 
           </LineChart>
 

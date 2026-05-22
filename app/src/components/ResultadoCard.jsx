@@ -72,7 +72,12 @@ function ResultadoCard({ resultado, setEvalPoint }) {
           <div className="rounded-3xl border border-slate-200 bg-slate-50 p-8 overflow-auto">
 
             <div className="text-slate-800">
-              <BlockMath math={resultado.latex} />
+              <BlockMath
+                math={String(resultado.latex)
+                  .replace(/−/g, "-")
+                  .replace(/\r/g, "")
+                }
+              />
             </div>
 
           </div>
@@ -148,8 +153,8 @@ function ResultadoCard({ resultado, setEvalPoint }) {
                     </div>
                   ) : (
                     <span className="text-sm text-slate-500 italic">
-                      {xEval.trim() === "" 
-                        ? "Ingresa un valor de X para evaluar el polinomio." 
+                      {xEval.trim() === ""
+                        ? "Ingresa un valor de X para evaluar el polinomio."
                         : "Ingresa un número válido para evaluar."}
                     </span>
                   )}
