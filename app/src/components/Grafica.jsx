@@ -1,146 +1,158 @@
 import {
   ResponsiveContainer,
-  LineChart,
+  ComposedChart,
   Line,
   CartesianGrid,
   Tooltip,
   XAxis,
   YAxis,
   Scatter,
+  Legend,
 } from "recharts";
 
 function Grafica({ resultado, evalPoint }) {
+  // Combinar los puntos para calcular dinámicamente un dominio limpio si es necesario
+  const tienePuntoEvaluado = evalPoint && evalPoint.y !== null && !isNaN(evalPoint.y);
+
   return (
     <div className="rounded-[32px] border border-slate-200 bg-white p-8 shadow-sm">
-
+      
       {/* Header */}
-      <div className="mb-8 flex items-start justify-between">
+      <div className="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
-          <span className="text-sm font-medium text-[#050919]">
+          <span className="text-sm font-medium text-slate-500 uppercase tracking-wider">
             Análisis Visual
           </span>
-
-          <h2 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900">
+          <h2 className="mt-1 text-3xl font-semibold tracking-tight text-slate-900">
             Gráfica de Interpolación
           </h2>
-
-          <p className="mt-3 text-sm leading-7 text-slate-500">
+          <p className="mt-2 text-sm leading-6 text-slate-500">
             Representación visual del polinomio interpolante y los puntos originales.
           </p>
         </div>
       </div>
 
-      {/* Chart */}
-      <div className="h-[560px] rounded-3xl bg-slate-50 p-6 border border-slate-100">
-
+      {/* Chart Container */}
+      <div className="h-[560px] rounded-3xl bg-slate-50 p-6 border border-slate-100 relative">
         <ResponsiveContainer width="100%" height="100%">
-
-          <LineChart
-            data={resultado.grafica}
+          <ComposedChart
             margin={{
               top: 30,
-              right: 40,
-              left: 20,
-              bottom: 20,
+              right: 30,
+              left: 10,
+              bottom: 10,
             }}
           >
-
-            {/* Grid */}
+            {/* Cuadrícula limpia de fondo */}
             <CartesianGrid
-              strokeDasharray="4 4"
+              strokeDasharray="6 6"
               stroke="#E2E8F0"
+              vertical={true}
             />
 
-            {/* X Axis */}
+            {/* Eje X */}
             <XAxis
               dataKey="x"
               type="number"
               stroke="#94A3B8"
-              tick={{ fill: "#64748B", fontSize: 12 }}
+              tick={{ fill: "#64748B", fontSize: 12, fontWeight: 500 }}
               axisLine={false}
               tickLine={false}
-              domain={[
-                (dataMin) =>
-                  dataMin - Math.abs(dataMin * 0.2 || 1),
-
-                (dataMax) =>
-                  dataMax + Math.abs(dataMax * 0.2 || 1),
-              ]}
+              domain={["dataMin - 1", "dataMax + 1"]}
+              allowDataOverflow={false}
             />
 
-            {/* Y Axis */}
+            {/* Eje Y */}
             <YAxis
+              dataKey="y"
               type="number"
               stroke="#94A3B8"
-              tick={{ fill: "#64748B", fontSize: 12 }}
+              tick={{ fill: "#64748B", fontSize: 12, fontWeight: 500 }}
               axisLine={false}
               tickLine={false}
-              domain={[
-                (dataMin) =>
-                  dataMin - Math.abs(dataMin * 0.2 || 1),
-
-                (dataMax) =>
-                  dataMax + Math.abs(dataMax * 0.2 || 1),
-              ]}
+              domain={["dataMin - 2", "dataMax + 2"]}
+              allowDataOverflow={false}
             />
 
-            {/* Tooltip */}
+            {/* Tooltip moderno flotante */}
             <Tooltip
               cursor={{
-                stroke: "#CBD5E1",
+                stroke: "#94A3B8",
                 strokeWidth: 1,
+                strokeDasharray: "4 4",
               }}
               contentStyle={{
-                borderRadius: "18px",
+                borderRadius: "20px",
                 border: "1px solid #E2E8F0",
-                background: "rgba(255,255,255,0.96)",
-                backdropFilter: "blur(12px)",
-                boxShadow: "0 10px 30px rgba(15,23,42,0.08)",
-                color: "#0F172A",
-                padding: "12px",
+                background: "rgba(255, 255, 255, 0.98)",
+                backdropFilter: "blur(16px)",
+                boxShadow: "0 12px 34px rgba(15, 23, 42, 0.06)",
+                padding: "14px",
               }}
-              formatter={(value) => [
-                Number(value).toFixed(6),
+              itemStyle={{ fontSize: "13px", color: "#334155" }}
+              labelStyle={{ fontSize: "12px", fontWeight: 600, color: "#0F172A", marginBottom: "4px" }}
+              formatter={(value, name) => [
+                Number(value).toFixed(5),
+                name === "y" ? "Polinomio P(x)" : name
               ]}
+              labelFormatter={(label) => `Coordenada X: ${Number(label).toFixed(4)}`}
             />
 
-            {/* Polynomial line */}
+            {/* Leyenda minimalista en la parte superior */}
+            <Legend
+              verticalAlign="top"
+              height={40}
+              iconType="circle"
+              iconSize={8}
+              wrapperStyle={{
+                fontSize: "13px",
+                fontWeight: 500,
+                paddingBottom: "20px",
+              }}
+            />
+
+            {/* Línea suave continua del Polinomio (Data del backend) */}
             <Line
-              type="natural"
+              name="Polinomio Interpolante"
+              data={resultado.grafica}
+              type="monotone"
               dataKey="y"
               stroke="#0F172A"
-              strokeWidth={3.5}
+              strokeWidth={3}
               dot={false}
               activeDot={{
                 r: 6,
+                stroke: "#0F172A",
+                strokeWidth: 2,
+                fill: "#FFF",
               }}
+              legendType="line"
             />
 
-            {/* Original points */}
+            {/* Nube de puntos originales ingresados */}
             <Scatter
               name="Puntos Originales"
               data={resultado.puntos_originales}
+              dataKey="y"
               fill="#7C3AED"
+              shape="circle"
+              legendType="circle"
             />
 
-            {/* Evaluated point */}
-            {evalPoint &&
-              evalPoint.y !== null &&
-              !isNaN(evalPoint.y) && (
-                <Scatter
-                  name="Punto Evaluado"
-                  data={[evalPoint]}
-                  fill="#EF4444"
-                  shape="circle"
-                />
-              )}
-
-          </LineChart>
-
+            {/* Punto interactivo evaluado por el usuario en tiempo real */}
+            {tienePuntoEvaluado && (
+              <Scatter
+                name="Punto Evaluado"
+                data={[evalPoint]}
+                dataKey="y"
+                fill="#EF4444"
+                shape="circle"
+                legendType="circle"
+              />
+            )}
+          </ComposedChart>
         </ResponsiveContainer>
-
       </div>
-
     </div>
   );
 }

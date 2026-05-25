@@ -1,16 +1,19 @@
-# React + Vite
+# Proyecto de Metodos Numericos
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Como ejecutar
 
-Currently, two official plugins are available:
+./  en la raiz donde se encuentra main.py ejecutar 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+pip install fastapi uvicorn pydantic sympy numpy
 
-## React Compiler
+luego ejecutar con 
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+uvicorn main:app --reload para levantar el servicio de fastapi 
 
-## Expanding the ESLint configuration
+Abre el puerto http://127.0.0.1:8000
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+// levantar React JS 
+
+cd app
+npm install
+npm run dev 
