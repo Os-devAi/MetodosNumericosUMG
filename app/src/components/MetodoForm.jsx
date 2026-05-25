@@ -152,7 +152,7 @@ function MetodoForm({ setResultado }) {
         <div>
 
           <label className="mb-3 block text-sm font-medium text-slate-700">
-            Valores de Y
+            Valores de F(x)
           </label>
 
           <input

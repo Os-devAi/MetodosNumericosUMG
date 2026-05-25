@@ -60,12 +60,8 @@ function ResultadoCard({ resultado, setEvalPoint }) {
             </span>
 
             <h2 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900">
-              Polinomio Interpolante
+              Polinomio
             </h2>
-
-            <p className="mt-3 text-sm leading-7 text-slate-500">
-              Expresión matemática final obtenida mediante el método seleccionado.
-            </p>
 
           </div>
 
@@ -87,7 +83,7 @@ function ResultadoCard({ resultado, setEvalPoint }) {
               Evaluar Polinomio
             </h3>
             <p className="mt-1 text-sm text-slate-500">
-              Evalúa la función interpolada en cualquier valor de X.
+              Ingresar valor de X para evaluar.
             </p>
 
             <div className="mt-6 flex flex-col md:flex-row md:items-center gap-6">
@@ -170,16 +166,8 @@ function ResultadoCard({ resultado, setEvalPoint }) {
 
           <div className="mb-8">
 
-            <span className="text-sm font-medium text-[#050919]">
-              Desarrollo Matemático
-            </span>
-
-            <h2 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900">
-              Explicación Paso a Paso
-            </h2>
-
             <p className="mt-3 text-sm leading-7 text-slate-500">
-              Desarrollo completo del procedimiento matemático.
+              Pasos procedimiento matemático.
             </p>
 
           </div>
